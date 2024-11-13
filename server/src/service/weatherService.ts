@@ -8,7 +8,26 @@ dotenv.config();
 // TODO: Complete the WeatherService class
 class WeatherService {
   // TODO: Define the baseURL, API key, and city name properties
+  const baseURL = process.env.API_BASE_URL;
+  const keyAPI = process.env.API_KEY;
+  let cityName: string= '';
+
   // TODO: Create fetchLocationData method
+  async function fetchLocationData() {
+    const url = "https://example.org/products.json";
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   // private async fetchLocationData(query: string) {}
   // TODO: Create destructureLocationData method
   // private destructureLocationData(locationData: Coordinates): Coordinates {}

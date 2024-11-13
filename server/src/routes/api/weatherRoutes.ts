@@ -1,5 +1,7 @@
 import { Router } from 'express';
+import weatherService from '../../service/weatherService';
 const router = Router();
+const queryURL = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API key}`;
 
 // import HistoryService from '../../service/historyService.js';
 // import WeatherService from '../../service/weatherService.js';
@@ -7,6 +9,7 @@ const router = Router();
 // TODO: POST Request with city name to retrieve weather data
 router.post('/', (req, res) => {
   // TODO: GET weather data from city name
+  weatherService.fetchWeatherData(queryURL);
   // TODO: save city to search history
 });
 
