@@ -9,7 +9,7 @@ interface Coordinates {
 }
 
 // TODO-COMPLETE: Define a class for the Weather object
-class Weather {
+export class Weather {
   city: string;
   tempF: number;
   windSpeed: number;
