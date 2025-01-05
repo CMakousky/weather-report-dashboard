@@ -55,7 +55,7 @@ class WeatherService {
       const locationData = await response.json();
       console.log(locationData);
 
-      return locationData;
+      return locationData[0];
 
     } catch (error:any) {
       console.error(error.message);
@@ -64,16 +64,16 @@ class WeatherService {
 
   // TODO-COMPLETE: Create destructureLocationData method
   // private destructureLocationData(locationData: Coordinates): Coordinates {}
-  private destructureLocationData(locationData: Coordinates[]): Coordinates {
+  private destructureLocationData(locationData: Coordinates): Coordinates {
 
     const desLocationData: Coordinates = {
-      name: locationData[0].name,
-      lat: locationData[0].lat,
-      lon: locationData[0].lon
+      name: locationData.name,
+      lat: locationData.lat,
+      lon: locationData.lon
     };
 
     this.cityName = desLocationData.name;
-    console.log(desLocationData);
+    console.log("\n", desLocationData, "\n");
 
     return desLocationData;
   }
@@ -99,7 +99,7 @@ class WeatherService {
 
     const locationData = await this.fetchLocationData(geocodeQuery);
 
-    const destructuredData: Coordinates = this.destructureLocationData(locationData as Coordinates[]);
+    const destructuredData: Coordinates = this.destructureLocationData(locationData);
 
     return destructuredData;
   }
@@ -116,11 +116,7 @@ class WeatherService {
 
       const weatherData = await response.json();
 
-      // console.log(weatherData);
-
       const weatherDataList = weatherData.list;
-
-      // console.log(weatherDataList);
 
       return weatherDataList;
 
@@ -147,11 +143,11 @@ class WeatherService {
   // TODO-COMPLETE: Complete buildForecastArray method
   // private buildForecastArray(currentWeather: Weather, weatherData: any[]) {}
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
-    const dayOne = this.parseCurrentWeather(weatherData.slice(1));
-    const dayTwo = this.parseCurrentWeather(weatherData.slice(9));
-    const dayThree = this.parseCurrentWeather(weatherData.slice(17));
-    const dayFour = this.parseCurrentWeather(weatherData.slice(25));
-    const dayFive = this.parseCurrentWeather(weatherData.slice(33));
+    const dayOne = this.parseCurrentWeather(weatherData.slice(7));
+    const dayTwo = this.parseCurrentWeather(weatherData.slice(15));
+    const dayThree = this.parseCurrentWeather(weatherData.slice(23));
+    const dayFour = this.parseCurrentWeather(weatherData.slice(31));
+    const dayFive = this.parseCurrentWeather(weatherData.slice(39));
 
     const fiveDayForecast = [dayOne, dayTwo, dayThree, dayFour, dayFive];
 
@@ -169,8 +165,7 @@ class WeatherService {
 
     const locationData = await this.fetchAndDestructureLocationData();
     const weatherData = await this.fetchWeatherData(locationData);
-    const rawCurrentWeather = weatherData.slice(0,1);
-    const currentWeather = this.parseCurrentWeather(rawCurrentWeather);
+    const currentWeather = this.parseCurrentWeather(weatherData);
     const forecastArray = this.buildForecastArray(currentWeather, weatherData);
 
     return forecastArray;
