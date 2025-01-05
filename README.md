@@ -22,7 +22,9 @@ Use your favorite software package manager, such as Node Package Manager, to ins
 
 ## Usage
 
-Enter the name of a city from the United States in the search bar and then click the on-screen 'Search' button. Previously viewed cities can be recalled by pressing the appropriate button underneath the 'Search' button.
+Enter the name of a city from the United States in the search bar and then click the on-screen 'Search' button. Previously viewed cities can be recalled by pressing the appropriate button underneath the 'Search' button. Follow the link below to view the deployed web app.
+
+[https://weather-report-dashboard-cm.onrender.com](https://weather-report-dashboard-cm.onrender.com)
 
 ## Contributing
 
@@ -31,6 +33,25 @@ Contact Christopher Makousky for inqueries about making contributions to this pr
 ## Tests
 
 Follow the on-screen prompts to test the client features. Use your favorite API development platform, such as Insomnia, to test the server routes.
+
+    GIVEN a weather dashboard with form inputs
+
+    WHEN I search for a city
+
+    THEN I am presented with current and future conditions for that city, and that city is added to the search history
+
+    WHEN I view current weather conditions for that city
+
+    THEN I am presented with the city name, the date, an icon representation of weather conditions, a description of the weather for the icon's alt tag, the temperature, the humidity, and the wind speed
+
+    WHEN I view future weather conditions for that city
+
+    THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+
+    WHEN I click on a city in the search history
+
+    THEN I am again presented with current and future conditions for that city
+
 
 ## Questions
 
