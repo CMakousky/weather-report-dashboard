@@ -43,7 +43,6 @@ class WeatherService {
   }
 
   // TODO-COMPLETE: Create fetchLocationData method
-  // private async fetchLocationData(query: string) {}
   private async fetchLocationData(query: string) {
     try {
       const response = await fetch(`${this.baseURL}/geo/1.0/direct?q=${query},US&limit=1&appid=${this.keyAPI}`);
@@ -63,7 +62,6 @@ class WeatherService {
   }
 
   // TODO-COMPLETE: Create destructureLocationData method
-  // private destructureLocationData(locationData: Coordinates): Coordinates {}
   private destructureLocationData(locationData: Coordinates): Coordinates {
 
     const desLocationData: Coordinates = {
@@ -93,7 +91,6 @@ class WeatherService {
   // }
 
   // TODO-COMPLETE: Create fetchAndDestructureLocationData method
-  // private async fetchAndDestructureLocationData() {}
   private async fetchAndDestructureLocationData() {
     const geocodeQuery = this.buildGeocodeQuery();
 
@@ -105,7 +102,6 @@ class WeatherService {
   }
 
   // TODO-COMPLETE: Create fetchWeatherData method
-  // private async fetchWeatherData(coordinates: Coordinates) {}
   private async fetchWeatherData(coordinates: Coordinates) {
     try {
       const response = await fetch(`${this.baseURL}/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${this.keyAPI}&units=imperial`);
@@ -126,7 +122,6 @@ class WeatherService {
   }
   
   // TODO-COMPLETE: Build parseCurrentWeather method
-  // private parseCurrentWeather(response: any) {}
   private parseCurrentWeather(response: any) {
     const currentWeather: Weather = {
       city: this.cityName,
@@ -141,7 +136,6 @@ class WeatherService {
   }
 
   // TODO-COMPLETE: Complete buildForecastArray method
-  // private buildForecastArray(currentWeather: Weather, weatherData: any[]) {}
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
     const dayOne = this.parseCurrentWeather(weatherData.slice(7));
     const dayTwo = this.parseCurrentWeather(weatherData.slice(15));
@@ -159,7 +153,6 @@ class WeatherService {
   }
   
   // TODO-COMPLETE: Complete getWeatherForCity method
-  // async getWeatherForCity(city: string) {}
   async getWeatherForCity(city: string) {
     this.cityName = city;
     try {
