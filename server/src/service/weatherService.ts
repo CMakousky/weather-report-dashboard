@@ -162,13 +162,18 @@ class WeatherService {
   // async getWeatherForCity(city: string) {}
   async getWeatherForCity(city: string) {
     this.cityName = city;
+    try {
+      const locationData = await this.fetchAndDestructureLocationData();
+      const weatherData = await this.fetchWeatherData(locationData);
+      const currentWeather = this.parseCurrentWeather(weatherData);
+      const forecastArray = this.buildForecastArray(currentWeather, weatherData);
+  
+      return forecastArray;
 
-    const locationData = await this.fetchAndDestructureLocationData();
-    const weatherData = await this.fetchWeatherData(locationData);
-    const currentWeather = this.parseCurrentWeather(weatherData);
-    const forecastArray = this.buildForecastArray(currentWeather, weatherData);
-
-    return forecastArray;
+    } catch(error){
+      console.log('Error:', error);
+      return error;
+    };
   }
 }
 
