@@ -168,15 +168,13 @@ class WeatherService {
 
   // TODO-COMPLETE: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
-    const dayOne = this.parseForecastWeather(weatherData.slice(7));
-    const dayTwo = this.parseForecastWeather(weatherData.slice(15));
-    const dayThree = this.parseForecastWeather(weatherData.slice(23));
-    const dayFour = this.parseForecastWeather(weatherData.slice(31));
-    const dayFive = this.parseForecastWeather(weatherData.slice(39));
+    let weatherForecastArray: Weather[] = [currentWeather];
 
-    const fiveDayForecast = [dayOne, dayTwo, dayThree, dayFour, dayFive];
-
-    const weatherForecastArray = [currentWeather, ...fiveDayForecast];
+    for (let index: number = 7; index < weatherData.length; index = index + 8) {
+      let nextDay: Weather = this.parseForecastWeather(weatherData.slice(index));
+      let oldArray: Weather[] = weatherForecastArray;
+      weatherForecastArray = [...oldArray, nextDay];
+    };
 
     console.log(weatherForecastArray);
 
