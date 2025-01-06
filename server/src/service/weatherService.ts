@@ -170,7 +170,7 @@ class WeatherService {
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
     let weatherForecastArray: Weather[] = [currentWeather];
 
-    for (let index: number = 7; index < weatherData.length; index = index + 8) {
+    for (let index: number = 7; index < 40; index = index + 8) {
       let nextDay: Weather = this.parseForecastWeather(weatherData.slice(index));
       let oldArray: Weather[] = weatherForecastArray;
       weatherForecastArray = [...oldArray, nextDay];
